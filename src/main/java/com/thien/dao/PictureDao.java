@@ -33,7 +33,7 @@ public class PictureDao {
         }
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/art_or_photo_game?useSSL=false", "username","password");
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/art_or_photo?useSSL=false", "username","password");
         } catch (SQLException e) {
             System.out.println("Failed to get connection");
         }
