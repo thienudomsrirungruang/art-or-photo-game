@@ -11,4 +11,12 @@ public class PictureInfo {
     public void setIsPhoto(boolean isPhoto) {
         this.isPhoto = isPhoto;
     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public boolean isPhoto() {
+        return isPhoto;
+    }
 }
