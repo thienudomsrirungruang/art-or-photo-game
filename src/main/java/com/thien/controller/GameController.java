@@ -33,9 +33,7 @@ public class GameController {
     @RequestMapping("/image/{imageName}")
     @ResponseBody
     public byte[] getPictureAsBytes(@PathVariable("imageName") String imageName) throws IOException {
-        System.out.println(imageName);
         Path path = Paths.get("C:/Users/Chaiwat/IdeaProjects/art-or-photo-game/game-images/" + imageName + ".png");
-        System.out.println(path.toString());
         byte[] bytesRead = Files.readAllBytes(path);
         return bytesRead;
     }

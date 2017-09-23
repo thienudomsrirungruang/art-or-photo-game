@@ -22,7 +22,6 @@ function getPicture(){
         let path = imageData.path;
         isPhoto = imageData.photo;
         showPicture(path);
-        console.log(isPhoto);
     })
 }
 
