@@ -36,6 +36,7 @@ function showPicture(path){
 }
 
 function startClick(){
+    score = 0;
     $('#border-image').show();
     $('#art-btn').show();
     $('#photo-btn').show();
