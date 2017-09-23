@@ -2,6 +2,7 @@ $(document).ready(init);
 
 let score = 0;
 var isPhoto = true;
+var game = false;
 
 function init(){
     $('#art-btn').hide();
@@ -43,7 +44,9 @@ function startClick(){
     $('#start-btn').hide();
     showScore();
     getPicture();
+    game = true;
     setTimeout(function(){
+        game = false;
         $('#border-image').hide();
         $('#art-btn').hide();
         $('#photo-btn').hide();
@@ -87,9 +90,11 @@ function hideBorder(){
     $('#art-btn').hide();
     $('#photo-btn').hide();
     setTimeout(function(){
-        getPicture();
-        $('#border-image').show();
-        $('#art-btn').show();
-        $('#photo-btn').show();
+        if(game){
+            getPicture();
+            $('#border-image').show();
+            $('#art-btn').show();
+            $('#photo-btn').show();
+        }
     }, 1000);
 }
