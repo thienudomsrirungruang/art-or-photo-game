@@ -28,7 +28,7 @@ function getPicture(){
 
 function showPicture(path){
     let photoContainer = $('#photo')
-    photoContainer.html('<img src=' + path + ' class="show-image"/>');
+    photoContainer.html('<img src=/image/' + path + ' class="show-image"/>');
 }
 
 function artClick(){
