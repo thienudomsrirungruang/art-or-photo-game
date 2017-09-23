@@ -33,7 +33,7 @@ function showPicture(path){
 
 function artClick(){
     if (isPhoto) {
-        score -= 10;
+        score -= 5;
     }else{
         score++;
     }
@@ -46,7 +46,7 @@ function photoClick(){
     if (isPhoto) {
         score++;
     }else{
-        score -= 10;
+        score -= 5;
     }
     showScore();
     hideBorder();
