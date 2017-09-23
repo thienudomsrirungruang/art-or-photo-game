@@ -4,6 +4,7 @@ let score = 0;
 var isPhoto = true;
 
 function init(){
+    showScore();
     getPicture();
     $('#art-btn').click(artClick);
     $('#photo-btn').click(photoClick);
@@ -14,7 +15,6 @@ function showScore(){
 }
 
 function getPicture(){
-    showScore();
     $.ajax({
         method: 'POST',
         url: '/random-picture'
@@ -33,21 +33,33 @@ function showPicture(path){
 
 function artClick(){
     if (isPhoto) {
-        score--;
-        getPicture();
+        score -= 10;
     }else{
         score++;
-        getPicture();
     }
+    showScore();
+    hideBorder();
     
 }
 
 function photoClick(){
     if (isPhoto) {
         score++;
-        getPicture();
     }else{
-        score--;
-        getPicture();
+        score -= 10;
     }
+    showScore();
+    hideBorder();
+}
+
+function hideBorder(){
+    $('#border-image').hide();
+    $('#art-btn').hide();
+    $('#photo-btn').hide();
+    setTimeout(function(){
+        getPicture();
+        $('#border-image').show();
+        $('#art-btn').show();
+        $('#photo-btn').show();
+    }, 1000);
 }

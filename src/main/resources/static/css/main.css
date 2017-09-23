@@ -8,10 +8,17 @@ body{
 }
 
 
-#photo{
+.photo{
     height: 50vh;
     width: 50vh;
-    margin: 12px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#border{
+    z-index: 1000;
+    background: transparent;
 }
 
 #score{
@@ -26,4 +33,18 @@ body{
 
 .selector-button{
     width: 25vw;
+    height: 10vh !important;
+    line-height: 10vh !important;
+    font-size: 30px !important;
+}
+
+#black-background{
+    z-index: 100000;
+}
+
+#photo-container{
+    position: relative;
+    margin: 12px;
+    height: 50vh;
+    width: 50vh;
 }
