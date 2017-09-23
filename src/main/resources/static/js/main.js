@@ -21,8 +21,14 @@ function getPicture(){
     }).done(function(imageData){
         let path = imageData.path;
         isPhoto = imageData.photo;
+        showPicture(path);
         console.log(isPhoto);
     })
+}
+
+function showPicture(path){
+    let photoContainer = $('#photo')
+    photoContainer.html('<img src=' + path + ' class="show-image"/>');
 }
 
 function artClick(){
