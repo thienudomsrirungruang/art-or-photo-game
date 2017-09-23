@@ -4,10 +4,15 @@ let score = 0;
 var isPhoto = true;
 
 function init(){
-    showScore();
-    getPicture();
+    $('#art-btn').hide();
+    $('#photo-btn').hide();
+    $('#photo').html('')
+    $('#border-image').hide();
+
+
     $('#art-btn').click(artClick);
     $('#photo-btn').click(photoClick);
+    $('#start-btn').click(startClick);
 }
 
 function showScore(){
@@ -30,6 +35,32 @@ function showPicture(path){
     photoContainer.html('<img src=/image/' + path + ' class="show-image"/>');
 }
 
+function startClick(){
+    $('#border-image').show();
+    $('#art-btn').show();
+    $('#photo-btn').show();
+    $('#start-btn').hide();
+    showScore();
+    getPicture();
+    setTimeout(function(){
+        $('#border-image').hide();
+        $('#art-btn').hide();
+        $('#photo-btn').hide();
+        $('#photo').html('');
+        $('#start-btn').show();
+    }, 60000)
+    changeTime(60)
+}
+
+function changeTime(timeLeft){
+    $('#time').html('Time: ' + timeLeft);
+    setTimeout(function(){
+        if(timeLeft > 0){
+           changeTime(timeLeft - 1) 
+        }
+    }, 1000)
+}
+
 function artClick(){
     if (isPhoto) {
         score -= 5;
@@ -38,7 +69,6 @@ function artClick(){
     }
     showScore();
     hideBorder();
-    
 }
 
 function photoClick(){
