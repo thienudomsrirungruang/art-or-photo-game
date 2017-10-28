@@ -3,6 +3,7 @@ package com.thien.controller;
 import com.thien.entity.PictureInfo;
 import com.thien.service.PictureGetter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ import java.nio.file.Paths;
 
 @Controller
 public class GameController {
+
+    @Value("${image.path}")
+    private String imagePath;
 
     @Autowired
     private PictureGetter pictureGetter;
@@ -33,7 +37,7 @@ public class GameController {
     @RequestMapping("/image/{imageName}")
     @ResponseBody
     public byte[] getPictureAsBytes(@PathVariable("imageName") String imageName) throws IOException {
-        Path path = Paths.get("C:/Users/Chaiwat/IdeaProjects/art-or-photo-game/game-images/" + imageName + ".png");
+        Path path = Paths.get(imagePath + imageName + ".png");
         byte[] bytesRead = Files.readAllBytes(path);
         return bytesRead;
     }
