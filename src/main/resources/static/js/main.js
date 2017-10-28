@@ -5,6 +5,7 @@ var isPhoto = true;
 var game = false;
 
 function init(){
+
     $('#art-btn').hide();
     $('#photo-btn').hide();
     $('#photo').html('')
@@ -52,8 +53,13 @@ function startClick(){
         $('#photo-btn').hide();
         $('#photo').html('');
         $('#start-btn').show();
-    }, 60000)
-    changeTime(60)
+        if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){
+            Cookies.set('highscore', score, { expires: 30, path: '' })
+        }else{
+            Cookies.set('highscore', Cookies.get('highscore'), { expires: 30, path: '' })
+        }
+    }, 5000)
+    changeTime(5)
 }
 
 function changeTime(timeLeft){
