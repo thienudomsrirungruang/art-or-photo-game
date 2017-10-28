@@ -52,7 +52,6 @@ function startClick(){
         $('#art-btn').hide();
         $('#photo-btn').hide();
         $('#photo').html('');
-        $('#start-btn').show();
         if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){
             Cookies.set('highscore', score, { expires: 365, path: '' })
         }else{
@@ -60,6 +59,9 @@ function startClick(){
         }
     }, 5000)
     changeTime(5)
+        setTimeout(function(){
+            $('#start-btn').show();
+        }, 1000)
 }
 
 function changeTime(timeLeft){
