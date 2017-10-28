@@ -15,10 +15,21 @@ function init(){
     $('#art-btn').click(artClick);
     $('#photo-btn').click(photoClick);
     $('#start-btn').click(startClick);
+
+    updateHighScore();
 }
 
 function showScore(){
     $('#score').html('Score: ' + score);
+}
+
+function updateHighScore(){
+    if(Cookies.get('highscore') !== undefined){
+        $('#highscore').show();
+        $('#highscore').html('High Score: ' + Cookies.get('highscore'));
+    }else{
+        $('#highscore').hide();
+    }
 }
 
 function getPicture(){
@@ -57,6 +68,8 @@ function startClick(){
         }else{
             Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' })
         }
+
+        updateHighScore();
         setTimeout(function(){
             $('#start-btn').show();
         }, 1000)
