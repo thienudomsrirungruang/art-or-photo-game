@@ -54,9 +54,9 @@ function startClick(){
         $('#photo').html('');
         $('#start-btn').show();
         if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){
-            Cookies.set('highscore', score, { expires: 30, path: '' })
+            Cookies.set('highscore', score, { expires: 365, path: '' })
         }else{
-            Cookies.set('highscore', Cookies.get('highscore'), { expires: 30, path: '' })
+            Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' })
         }
     }, 5000)
     changeTime(5)
