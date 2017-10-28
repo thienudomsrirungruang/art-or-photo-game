@@ -3,7 +3,7 @@ body{
 }
 
 #title{
-    font-size: 20px;
+    font-size: 8vh;
     margin-bottom: 20px;
 }
 
@@ -21,13 +21,8 @@ body{
     background: transparent;
 }
 
-#score{
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-#time{
-    font-size: 16px;
+.stats{
+    font-size: 5vh;
     margin-bottom: 10px;
 }
 
