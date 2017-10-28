@@ -57,11 +57,11 @@ function startClick(){
         }else{
             Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' })
         }
-    }, 5000)
-    changeTime(5)
         setTimeout(function(){
             $('#start-btn').show();
         }, 1000)
+    }, 60000)
+    changeTime(60)
 }
 
 function changeTime(timeLeft){
