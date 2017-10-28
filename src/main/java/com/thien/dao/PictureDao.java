@@ -1,57 +1,39 @@
 package com.thien.dao;
 
-import java.sql.*;
+import com.thien.entity.PictureInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import java.sql.*;
+import java.util.List;
+
+@Repository
 public class PictureDao {
     private static PictureDao dao;
     private Connection connection;
 
     private static final String GET_RANDOM_PICTURE_SQL = "select * from pics order by rand() limit 1;";
 
-    private PreparedStatement getRandomPictureSqlStatement;
-    public static PictureDao getInstance(){
-        if(dao == null){
-            dao = new PictureDao();
-        }
-        return dao;
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public PictureDao(){
-        connection = getConnection();
-        try {
-            getRandomPictureSqlStatement = connection.prepareStatement(GET_RANDOM_PICTURE_SQL);
-        } catch (SQLException e) {
-            System.out.println("PreparedStatement failure");
-        }
     }
 
-    protected Connection getConnection(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/art_or_photo?useSSL=false", "username","password");
-        } catch (SQLException e) {
-            System.out.println("Failed to get connection");
-        }
+    public List<PictureInfo> getRandomPicturePath(){
+        List<PictureInfo> rs = jdbcTemplate.query( GET_RANDOM_PICTURE_SQL, new RowMapper<PictureInfo>(){
 
-        if(null == connection){
-            System.out.println("Connection is null");
-        }
-
-        return connection;
-    }
-
-    public ResultSet getRandomPicturePath(){
-        try{
-            ResultSet rs = getRandomPictureSqlStatement.executeQuery();
-            return rs;
-        }catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        }
+            @Override
+            public PictureInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                PictureInfo info = new PictureInfo();
+                info.setPath(rs.getString("path"));
+                info.setIsPhoto(rs.getInt("is_photo") == 1);
+                return info;
+            }
+        });
+        return rs;
     }
 }

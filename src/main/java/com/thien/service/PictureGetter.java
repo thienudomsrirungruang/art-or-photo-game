@@ -2,33 +2,23 @@ package com.thien.service;
 
 import com.thien.dao.PictureDao;
 import com.thien.entity.PictureInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class PictureGetter {
+
+    @Autowired
     private PictureDao pd;
 
-    public PictureGetter(){
-        pd = PictureDao.getInstance();
-    }
-
     public PictureInfo getRandomPicture(){
-        ResultSet rs = pd.getRandomPicturePath();
-        try {
-            if(rs.next()){
-                PictureInfo output = new PictureInfo();
-                output.setPath(rs.getString(1));
-                output.setIsPhoto(rs.getBoolean(2));
-                return output;
-            }else{
-                return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+        List<PictureInfo> rs = pd.getRandomPicturePath();
+        if( null != rs || !rs.isEmpty() ){
+            return rs.get(0);
         }
+
+        return null;
     }
 }
