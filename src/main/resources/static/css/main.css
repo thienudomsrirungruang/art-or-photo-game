@@ -48,3 +48,23 @@ body{
     height: 50vh;
     width: 50vh;
 }
+
+
+
+.fireworks{
+    display:    none;
+    position:   fixed;
+    z-index:    -1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, 0 ) 
+                url('/images/firework-resized.gif') 
+                50% 40% 
+                no-repeat;
+}
+
+body.highscore .fireworks{
+    display: block;
+}

@@ -23,6 +23,10 @@ function showScore(){
     $('#score').html('Score: ' + score);
 }
 
+function newHighScore(){
+    $('#score').html('New High Score: ' + score + '!')
+}
+
 function updateHighScore(){
     if(Cookies.get('highscore') !== undefined){
         $('#highscore').show();
@@ -65,6 +69,11 @@ function startClick(){
         $('#photo').html('');
         if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){
             Cookies.set('highscore', score, { expires: 365, path: '' })
+            $('body').addClass('highscore')
+            newHighScore()
+            setTimeout(function(){
+                $('body').removeClass('highscore')
+            }, 5000)
         }else{
             Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' })
         }
