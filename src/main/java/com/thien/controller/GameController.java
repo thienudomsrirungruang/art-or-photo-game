@@ -2,8 +2,6 @@ package com.thien.controller;
 
 import com.thien.entity.PictureInfo;
 import com.thien.service.PictureGetter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -18,8 +16,6 @@ import java.nio.file.Paths;
 
 @Controller
 public class GameController {
-
-    private Logger log = LoggerFactory.getLogger(GameController.class);
 
     @Value("${image.path}")
     private String imagePath;
@@ -42,7 +38,6 @@ public class GameController {
     @ResponseBody
     public byte[] getPictureAsBytes(@PathVariable("imageName") String imageName) throws IOException {
         String stringPath = imagePath + imageName + ".png";
-        log.info( stringPath );
         Path path = Paths.get( stringPath );
         byte[] bytesRead = Files.readAllBytes(path);
         return bytesRead;
