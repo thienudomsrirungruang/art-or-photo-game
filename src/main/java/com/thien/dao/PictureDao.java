@@ -11,17 +11,10 @@ import java.util.List;
 
 @Repository
 public class PictureDao {
-    private static PictureDao dao;
-    private Connection connection;
-
     private static final String GET_RANDOM_PICTURE_SQL = "select * from pics order by rand() limit 1;";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    public PictureDao(){
-    }
-
 
     public List<PictureInfo> getRandomPicturePath(){
         List<PictureInfo> rs = jdbcTemplate.query( GET_RANDOM_PICTURE_SQL, new RowMapper<PictureInfo>(){
