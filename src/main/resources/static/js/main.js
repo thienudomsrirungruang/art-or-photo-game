@@ -28,12 +28,6 @@ function newHighScore(){
 }
 
 function updateHighScore(){
-    if(Cookies.get('highscore') !== undefined){
-        $('#highscore').show();
-        $('#highscore').html('High Score: ' + Cookies.get('highscore'));
-    }else{
-        $('#highscore').hide();
-    }
 }
 
 function getPicture(){
@@ -67,18 +61,6 @@ function startClick(){
         $('#art-btn').hide();
         $('#photo-btn').hide();
         $('#photo').html('');
-        if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){
-            Cookies.set('highscore', score, { expires: 365, path: '' })
-            $('body').addClass('highscore')
-            newHighScore()
-            setTimeout(function(){
-                $('body').removeClass('highscore')
-            }, 5000)
-        }else{
-            Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' })
-        }
-
-        updateHighScore();
         setTimeout(function(){
             $('#start-btn').show();
         }, 1000)
