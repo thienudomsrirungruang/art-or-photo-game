@@ -28,6 +28,19 @@ function newHighScore(){
 }
 
 function updateHighScore(){
+    $.ajax({
+        method: 'POST',
+        url: '/get-highscore/global/1'
+    })
+    .done(function(scoreInfo) {
+        if(scoreInfo.hasScore){
+            $('#highscore').show()
+            $('#highscore').html('High Score: ' + scoreInfo.score)
+        }else{
+            $('#highscore').hide()
+        }
+    })
+    
 }
 
 function getPicture(){
@@ -61,6 +74,19 @@ function startClick(){
         $('#art-btn').hide();
         $('#photo-btn').hide();
         $('#photo').html('');
+        //     $('body').addClass('highscore')
+        //     newHighScore()
+        //     setTimeout(function(){
+        //         $('body').removeClass('highscore')
+        //     }, 5000)
+        let scoreUrl = '/enter-score/1/1/' + score;
+        $.ajax({
+            method: 'POST',
+            url: scoreUrl
+        }).done(function(){
+            updateHighScore();
+        })
+        
         setTimeout(function(){
             $('#start-btn').show();
         }, 1000)
