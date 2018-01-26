@@ -11,4 +11,9 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/login/signup")
+    public String getSignupScreen(){
+        return "signup";
+    }
+
 }
