@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.*;
 import java.util.List;
 
 @Repository
+@Transactional
 public class PictureDao {
     private static final String GET_RANDOM_PICTURE_SQL = "select * from pics order by rand() limit 1;";
 
