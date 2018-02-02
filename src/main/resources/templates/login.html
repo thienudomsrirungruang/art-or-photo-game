@@ -12,12 +12,18 @@
     <title>Login</title>
 </head>
 <body>
+    <div th:if="${param.error}" class="top-margin">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="top-margin">
+            You have been logged out.
+        </div>
     <div class="row">
         <div class="col s8 m6 offset-s2 offset-m3">
             <div id="title" class="top-margin">
                 Login
             </div>
-            <form>
+            <form th:action="@{/login}" method="post">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="username" type="text" class="validate" data-length="20"/>
