@@ -14,6 +14,7 @@ import java.util.List;
 @Transactional
 public class UserDao {
     private static final String GET_RANDOM_PICTURE_SQL = "select id from users where username=?";
+    private static final String ENTER_NEW_USER_SQL = "insert into users (username, pwd, enabled) values (?, ?, 1)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -26,5 +27,9 @@ public class UserDao {
             }
         }, username);
         return rs.get(0);
+    }
+
+    public void enterNewUser(String username, String encodedPassword){
+        jdbcTemplate.update(ENTER_NEW_USER_SQL, username, encodedPassword);
     }
 }

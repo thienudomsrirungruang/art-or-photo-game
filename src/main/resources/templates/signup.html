@@ -6,7 +6,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <meta charset="UTF-8"/>
     <title>Login</title>
@@ -17,19 +16,20 @@
             <div id="title" class="top-margin">
                 Sign up
             </div>
-            <form>
+            <form th:action="@{/login/signup}" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="username" type="text" class="validate" data-length="20"/>
+                        <input id="username" type="text" class="validate" name="username" data-length="20"/>
                         <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate"/>
+                        <input id="password" type="password" class="validate" name="password"/>
                         <label for="password">Password</label>
                     </div>
                 </div>
+                <div><input type="submit" class="waves-effect waves-light btn" value="Sign Up"/></div>
             </form>
             <div class="signup">
                 Or

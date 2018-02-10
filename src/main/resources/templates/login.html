@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link rel="stylesheet" th:href="@{../../css/login.css}"/>
+	<link rel="stylesheet" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
@@ -12,10 +12,13 @@
 </head>
 <body>
     <div th:if="${param.error}" class="top-margin">
-            Invalid username and password.
+        Invalid username and password.
     </div>
     <div th:if="${param.logout}" class="top-margin">
         You have been logged out.
+    </div>
+    <div th:if="${param.created}" class="top-margin">
+        Account created!
     </div>
     <div class="row">
         <div class="col s8 m6 offset-s2 offset-m3">
