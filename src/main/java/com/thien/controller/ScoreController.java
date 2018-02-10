@@ -1,5 +1,6 @@
 package com.thien.controller;
 
+import com.thien.dao.UserDao;
 import com.thien.entity.ScoreInfo;
 import com.thien.service.ScoreAdder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +9,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
+
 @Controller
 public class ScoreController {
     @Autowired
     private ScoreAdder scoreAdder;
 
-    @RequestMapping("/enter-score/{game_id}/{user_id}/{score}")
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping("/enter-score/{game_id}/{score}")
     @ResponseBody
-    public void enterScore(@PathVariable("game_id") String gameID, @PathVariable("user_id") String userID, @PathVariable("score") String score){
+    public void enterScore(@PathVariable("game_id") String gameID, @PathVariable("score") String score, Principal principal){
         try {
-            scoreAdder.enterScore(Integer.parseInt(gameID), Integer.parseInt(userID), Integer.parseInt(score));
+            int userId = userDao.getIdByUsername(principal.getName());
+            scoreAdder.enterScore(Integer.parseInt(gameID), userId, Integer.parseInt(score));
         }catch(Exception e){
             e.printStackTrace();
         }

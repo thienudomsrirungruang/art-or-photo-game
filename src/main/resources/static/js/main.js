@@ -79,7 +79,7 @@ function startClick(){
         //     setTimeout(function(){
         //         $('body').removeClass('highscore')
         //     }, 5000)
-        let scoreUrl = '/enter-score/1/1/' + score;
+        let scoreUrl = '/enter-score/1/' + score;
         $.ajax({
             method: 'POST',
             url: scoreUrl
