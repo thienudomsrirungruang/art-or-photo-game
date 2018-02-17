@@ -11,14 +11,12 @@
     <title>Login</title>
 </head>
 <body>
+    
     <div th:if="${param.error}" class="top-margin">
         Invalid username and password.
     </div>
     <div th:if="${param.logout}" class="top-margin">
         You have been logged out.
-    </div>
-    <div th:if="${param.created}" class="top-margin">
-        Account created!
     </div>
     <div class="row">
         <div class="col s8 m6 offset-s2 offset-m3">

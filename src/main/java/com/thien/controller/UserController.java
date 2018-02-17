@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -42,6 +44,17 @@ public class UserController {
     @RequestMapping("/dashboard/{username}")
     public String getUserDashboard(){
         return "userdashboard";
+    }
+
+    @RequestMapping("/dashboard/")
+    public String getDashboardRedirect(){
+        return "dashboardredirect";
+    }
+
+    @RequestMapping(value = "/user/getusername", method = RequestMethod.POST)
+    @ResponseBody
+    public String currentUserName(Principal principal) {
+        return principal.getName();
     }
 
 }
