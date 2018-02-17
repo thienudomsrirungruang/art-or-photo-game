@@ -2,18 +2,19 @@ package com.thien.controller;
 
 import com.thien.entity.UserSubmitInfo;
 import com.thien.service.UserAdder;
+import com.thien.service.UserInfoGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserAdder userAdder;
+
+    @Autowired
+    private UserInfoGetter uig;
 
     @RequestMapping("/login")
     public String getLoginScreen(){
@@ -29,6 +30,13 @@ public class UserController {
     public String greetingSubmit(@ModelAttribute UserSubmitInfo usi) {
         userAdder.enterUser(usi.getUsername(), usi.getPassword());
         return "login";
+    }
+
+    @PostMapping("/user/{username}/playcount")
+    @ResponseBody
+    public int getPlayCount(@PathVariable String username){
+        System.out.println("Test " + Integer.toString(uig.getPlayCount(username)));
+        return uig.getPlayCount(username);
     }
 
     @RequestMapping("/dashboard/{username}")

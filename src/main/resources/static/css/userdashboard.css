@@ -1,0 +1,27 @@
+.info-box{
+    background-color: #DDD;
+    border: 2px solid #888;
+    border-radius: 10px;
+    margin: 10px 5px;
+    color: #333;
+    padding: 3px;
+    overflow: hidden;
+}
+
+.small{
+    height: 100px !important;
+}
+
+.medium{
+    height: 220px !important;
+}
+
+.top-margin{
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+
+#title{
+    font-size: 5vh;
+    margin-bottom: 20px;
+}

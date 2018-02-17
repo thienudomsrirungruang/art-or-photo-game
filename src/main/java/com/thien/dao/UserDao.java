@@ -17,6 +17,8 @@ public class UserDao {
     private static final String ENTER_NEW_USER_SQL = "insert into users (username, pwd, enabled) values (?, ?, 1)";
     private static final String GET_USER_ID_SQL = "select id from users where username = ?";
     private static final String SET_USER_ROLE_SQL = "insert into user_roles (user_id, role) values (?, ?)";
+    private static final String GET_TOTAL_PLAY_COUNT_BY_USER_SQL  = "select count(score) from score where user_id=?;";
+
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -39,6 +41,17 @@ public class UserDao {
             e.printStackTrace();
         }
     }
+
+    public int getPlayCountByUsername(String username){
+        List<Integer> rs = jdbcTemplate.query(GET_TOTAL_PLAY_COUNT_BY_USER_SQL, new RowMapper<Integer>(){
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt(1);
+            }
+        }, getUserIdByUsername(username));
+        return rs.get(0);
+    }
+
 
     public int getUserIdByUsername(String username){
         List<Integer> rs = jdbcTemplate.query(GET_USER_ID_SQL, new RowMapper<Integer>(){
