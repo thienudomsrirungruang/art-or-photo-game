@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 public class UserAdder {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserDao ud;
 
     public void enterUser(String username, String password){
-//        String encodedPassword = passwordEncoder.encode(password);
-        ud.enterNewUser(username, password);
+        String encodedPassword = passwordEncoder.encode(password);
+        ud.enterNewUser(username, encodedPassword);
     }
 }
