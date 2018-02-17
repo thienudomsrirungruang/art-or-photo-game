@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LoginController {
+public class UserController {
 
     @Autowired
     private UserAdder userAdder;
@@ -29,6 +29,11 @@ public class LoginController {
     public String greetingSubmit(@ModelAttribute UserSubmitInfo usi) {
         userAdder.enterUser(usi.getUsername(), usi.getPassword());
         return "login";
+    }
+
+    @RequestMapping("/dashboard/{username}")
+    public String getUserDashboard(){
+        return "userdashboard";
     }
 
 }
