@@ -12,6 +12,25 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left">
+                <li><a href="/">Home</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right">
+                <li class="active"><a href="/dashboard/">Dashboard</a></li>
+                <li>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input display="hidden" type="submit" value="Sign Out"/>
+                    </form> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    
     <div class="container">
         <div id="title" class="top-margin">
             Dashboard
