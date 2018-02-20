@@ -15,9 +15,13 @@
     <nav>
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
                 <li><a href="/dashboard/">Dashboard</a></li>
+                <li>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input display="hidden" type="submit" value="Sign Out"/>
+                    </form> 
+                </li>
             </ul>
         </div>
     </nav>
