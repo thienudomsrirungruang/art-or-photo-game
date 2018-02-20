@@ -37,7 +37,6 @@ public class UserController {
     @PostMapping("/user/{username}/playcount")
     @ResponseBody
     public int getPlayCount(@PathVariable String username){
-        System.out.println("Test " + Integer.toString(uig.getPlayCount(username)));
         return uig.getPlayCount(username);
     }
 
