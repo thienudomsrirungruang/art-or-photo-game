@@ -5,10 +5,25 @@ let username;
 
 function init(){
     username = window.location.pathname.split('/')[2];
-    
+    checkUserExists();
+}
+
+function displayDashboard(){
     displayPlayCount();
     displayUsernameStats();
+}
 
+function checkUserExists(){
+    $.ajax({
+        method: 'POST',
+        url: '/user/' + username,
+    }).done(function(exists){
+        if(exists){
+            displayDashboard();
+        }else{
+            $('#dashboard').html('This user doesn\'t exist.')
+        }
+    })
 }
 
 function displayPlayCount(){

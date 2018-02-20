@@ -34,25 +34,33 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/user/{username}/playcount")
-    @ResponseBody
-    public int getPlayCount(@PathVariable String username){
-        return uig.getPlayCount(username);
-    }
-
     @RequestMapping("/dashboard/{username}")
     public String getUserDashboard(){
         return "userdashboard";
     }
+
+
 
     @RequestMapping("/dashboard/")
     public String getDashboardRedirect(){
         return "dashboardredirect";
     }
 
+    @PostMapping("/user/{username}")
+    @ResponseBody
+    public boolean userExists(@PathVariable String username){
+        return uig.userExists(username);
+    }
+
+    @PostMapping("/user/{username}/playcount")
+    @ResponseBody
+    public int getPlayCount(@PathVariable String username){
+        return uig.getPlayCount(username);
+    }
+
     @RequestMapping(value = "/user/getusername", method = RequestMethod.POST)
     @ResponseBody
-    public String currentUserName(Principal principal) {
+    public String currentUsername(Principal principal) {
         return principal.getName();
     }
 
