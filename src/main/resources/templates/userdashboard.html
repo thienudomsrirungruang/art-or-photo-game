@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" th:href="@{/css/userdashboard.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
@@ -34,6 +35,20 @@
     <div class="container">
         <div id="title" class="top-margin">
             Dashboard
+        </div>
+        <div id="search" class="top-margin">
+            <div class="row">
+                <form class="col s12 m8 l6">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input placeholder="Enter name..." id="player_name" type="text" class="validate"/>
+                        </div>
+                        <div class="col s2">
+                            <i class="material-icons" id="search-btn">search</i>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div id='dashboard'>
             <div class="row">
