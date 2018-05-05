@@ -11,6 +11,8 @@ function init(){
 function displayDashboard(){
     displayPlayCount();
     displayUsernameStats();
+
+    displayArtOrPhotoGameCounts();
 }
 
 function checkUserExists(){
@@ -38,4 +40,14 @@ function displayPlayCount(){
 
 function displayUsernameStats(){
     $('#username').html('Username: ' + username);
+}
+
+function displayArtOrPhotoGameCounts(){
+    $.ajax({
+        method: 'POST',
+        url: '/user/' + username + '/playcount/1',
+        contentType:'application/json'
+    }).done(function(count){
+        $('#art-or-photo-playcount').html('Games played: ' + count);
+    })
 }

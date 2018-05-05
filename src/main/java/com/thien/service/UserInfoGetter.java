@@ -17,4 +17,8 @@ public class UserInfoGetter {
     public int getPlayCount(String username){
         return ud.getPlayCountByUsername(username);
     }
+
+    public int getPlayCountByGame(String username, int gameID) {
+        return ud.getPlayCountByGame(username, gameID);
+    }
 }

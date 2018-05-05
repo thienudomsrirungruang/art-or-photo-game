@@ -18,6 +18,7 @@ public class UserDao {
     private static final String GET_USER_ID_SQL = "select id from users where username = ?";
     private static final String SET_USER_ROLE_SQL = "insert into user_roles (user_id, role) values (?, ?)";
     private static final String GET_TOTAL_PLAY_COUNT_BY_USER_SQL  = "select count(score) from score where user_id=?;";
+    private static final String GET_TOTAL_PLAY_COUNT_BY_GAME_SQL  = "select count(score) from score where user_id=? and game_id=?;";
     private static final String CHECK_USER_EXISTS_SQL = "select * from users where username=?";
 
 
@@ -63,6 +64,16 @@ public class UserDao {
         return rs.get(0);
     }
 
+    public int getPlayCountByGame(String username, int gameID) {
+        List<Integer> rs = jdbcTemplate.query(GET_TOTAL_PLAY_COUNT_BY_GAME_SQL, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt(1);
+            }
+        }, getUserIdByUsername(username), gameID);
+        return rs.get(0);
+    }
+
     public int getUserIdByUsername(String username){
         List<Integer> rs = jdbcTemplate.query(GET_USER_ID_SQL, new RowMapper<Integer>(){
             @Override
@@ -72,4 +83,6 @@ public class UserDao {
         }, username);
         return rs.get(0);
     }
+
+
 }
