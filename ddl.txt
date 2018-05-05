@@ -1,0 +1,29 @@
+create table art_or_photo.users (
+	id  int auto_increment,
+    username varchar(250) not null,
+    pwd varchar(250) not null,
+    enabled boolean,
+    primary key(id)
+);
+
+create table art_or_photo.pics (
+	id int auto_increment,
+    path varchar(250) not null,
+    is_photo boolean,
+    primary key(id)
+);
+
+create table art_or_photo.score (
+	id int auto_increment,
+    game_id int,
+    user_id int,
+    score int,
+    primary key(id)
+);
+
+create table art_or_photo.user_roles (
+	id int auto_increment,
+    user_id int,
+    role varchar(250),
+    primary key(id)
+);
