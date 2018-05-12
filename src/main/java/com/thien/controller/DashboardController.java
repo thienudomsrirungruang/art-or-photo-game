@@ -44,6 +44,13 @@ public class DashboardController {
         return uig.getPlayCountByGame(username, gameID);
     }
 
+    @PostMapping("/user/{username}/highscore/{game}")
+    @ResponseBody
+    public int getHighscoreByGame(@PathVariable String username, @PathVariable String game){
+        int gameID = Integer.parseInt(game);
+        return uig.getHighScoreByGame(username, gameID);
+    }
+
 
 
     @RequestMapping(value = "/user/getusername", method = RequestMethod.POST)

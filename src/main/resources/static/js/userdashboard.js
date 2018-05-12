@@ -20,10 +20,14 @@ function init(){
 }
 
 function displayDashboard(){
+    var GAME_INFO = {
+        id: 1,
+        name: 'Art or Photo'
+    };
     displayPlayCount();
     displayUsernameStats();
 
-    displayArtOrPhotoGameCounts();
+    displayGameCounts(GAME_INFO);
 }
 
 function checkUserExists(){
@@ -53,12 +57,40 @@ function displayUsernameStats(){
     $('#username').html('Username: ' + username);
 }
 
-function displayArtOrPhotoGameCounts(){
+function displayGameCounts(game){
+    var display = '';
+    display += '<div class="col s12 m6"><div class="info-box medium">' + game.name;
     $.ajax({
         method: 'POST',
-        url: '/user/' + username + '/playcount/1',
+        url: '/user/' + username + '/playcount/' + game.id,
         contentType:'application/json'
     }).done(function(count){
-        $('#art-or-photo-playcount').html('Games played: ' + count);
+        display += '<div class="game-playcount">Games played: ' + count + "</div>";
+        if(count > 0){
+            $.ajax({
+                method: 'POST',
+                url: '/user/' + username + '/highscore/' + game.id,
+                contentType:'application/json'
+            }).done(function(score){
+                display += '<div class="game-highscore">High score: ' + score + "</div>";
+                display += '</div></div>'
+                $('#game-counts').html(display);
+            })
+        }else{
+            display += '</div></div>'
+            $('#game-counts').html(display);
+        }
     })
+
+
 }
+
+//                <div class="col s12 m6">
+//                    <div class="info-box medium">
+//                        Art Or Photo
+//                        <div id="art-or-photo-playcount">
+//                        </div>
+//                        <div id="art-or-photo-highscore">
+//                        </div>
+//                    </div>
+//                </div>

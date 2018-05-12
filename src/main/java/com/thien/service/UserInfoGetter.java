@@ -21,4 +21,8 @@ public class UserInfoGetter {
     public int getPlayCountByGame(String username, int gameID) {
         return ud.getPlayCountByGame(username, gameID);
     }
+
+    public int getHighScoreByGame(String username, int gameID){
+        return ud.getHighScoreByGame(username, gameID);
+    }
 }
