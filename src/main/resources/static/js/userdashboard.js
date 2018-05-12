@@ -1,11 +1,22 @@
 $(document).ready(init);
 
-
 let username;
+
+function processUserChange(){
+    var user = $('#player_name').val();
+    window.location.href = '/dashboard/' + user;
+}
 
 function init(){
     username = window.location.pathname.split('/')[2];
     checkUserExists();
+
+    $('#player_name').keypress(function(e){
+        if (e.which == 13) {
+            processUserChange();
+        }
+    })
+
 }
 
 function displayDashboard(){
