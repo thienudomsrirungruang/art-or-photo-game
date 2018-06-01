@@ -15,6 +15,10 @@ public class UserAdder {
     @Autowired
     private UserDao ud;
 
+    public boolean checkUserExists(String username){
+        return ud.checkUserExists(username);
+    }
+
     public void enterUser(String username, String password){
         String encodedPassword = passwordEncoder.encode(password);
         ud.enterNewUser(username, encodedPassword);

@@ -13,18 +13,29 @@ import java.util.List;
 @Repository
 @Transactional
 public class UserDao {
-    private static final String GET_RANDOM_PICTURE_SQL = "select id from users where username=?";
-    private static final String ENTER_NEW_USER_SQL = "insert into users (username, pwd, enabled) values (?, ?, 1)";
-    private static final String GET_USER_ID_SQL = "select id from users where username = ?";
-    private static final String SET_USER_ROLE_SQL = "insert into user_roles (user_id, role) values (?, ?)";
+    private static final String GET_RANDOM_PICTURE_SQL = "select id from users where username=?;";
+    private static final String ENTER_NEW_USER_SQL = "insert into users (username, pwd, enabled) values (?, ?, 1);";
+    private static final String GET_USER_ID_SQL = "select id from users where username = ?;";
+    private static final String SET_USER_ROLE_SQL = "insert into user_roles (user_id, role) values (?, ?);";
     private static final String GET_TOTAL_PLAY_COUNT_BY_USER_SQL  = "select count(score) from score where user_id=?;";
     private static final String GET_TOTAL_PLAY_COUNT_BY_GAME_SQL  = "select count(score) from score where user_id=? and game_id=?;";
     private static final String GET_USER_HIGH_SCORE_BY_GAME_SQL = "select max(score) from score where user_id = ? and game_id = ?;";
-    private static final String CHECK_USER_EXISTS_SQL = "select * from users where username=?";
+    private static final String CHECK_USER_EXISTS_SQL = "select * from users where username=?;";
+    private static final String CHECK_USERNAME_TAKEN_SQL = "select TOP 1 username FROM users WHERE username = ?;";
 
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    public boolean checkUsernameTaken(String username){
+        List<Integer> rs = jdbcTemplate.query(CHECK_USERNAME_TAKEN_SQL, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt(1);
+            }
+        }, username);
+        return rs.size() >= 1;
+    }
 
     public int getIdByUsername(String username) throws Exception{
         List<Integer> rs = jdbcTemplate.query(GET_RANDOM_PICTURE_SQL, new RowMapper<Integer>(){

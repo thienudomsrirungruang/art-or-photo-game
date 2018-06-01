@@ -29,8 +29,12 @@ public class UserController {
 
     @PostMapping("/login/signup")
     public String greetingSubmit(@ModelAttribute UserSubmitInfo usi) {
-        userAdder.enterUser(usi.getUsername(), usi.getPassword());
-        return "login";
+        if(userAdder.checkUserExists(usi.getUsername())){
+            return "loginusernametakenredirect";
+        }else {
+            userAdder.enterUser(usi.getUsername(), usi.getPassword());
+            return "loginaccountcreatedredirect";
+        }
     }
 
 }

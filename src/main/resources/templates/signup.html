@@ -11,6 +11,9 @@
     <title>Login</title>
 </head>
 <body>
+    <div th:if="${param.taken}" class="top-margin">
+        Username taken.
+    </div>
     <div class="row">
         <div class="col s8 m6 offset-s2 offset-m3">
             <div id="title" class="top-margin">
