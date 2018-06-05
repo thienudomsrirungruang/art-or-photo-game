@@ -25,4 +25,8 @@ public class UserInfoGetter {
     public int getHighScoreByGame(String username, int gameID){
         return ud.getHighScoreByGame(username, gameID);
     }
+
+    public int[] getRecentScoresByGame(String username, int gameID, int numberScores){
+        return ud.getUserRecentScores(username, gameID, numberScores);
+    }
 }

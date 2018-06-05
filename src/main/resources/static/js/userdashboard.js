@@ -73,8 +73,15 @@ function displayGameCounts(game){
                 contentType:'application/json'
             }).done(function(score){
                 display += '<div class="game-highscore">High score: ' + score + "</div>";
-                display += '</div></div>'
-                $('#game-counts').html(display);
+                $.ajax({
+                    method: 'POST',
+                    url: '/user/' + username + '/recentscores/' + game.id,
+                    contentType: 'application/json'
+                }).done(function(recentscores){
+                    console.log(recentscores);
+                    display += '</div></div>';
+                    $('#game-counts').html(display);
+                })
             })
         }else{
             display += '</div></div>'

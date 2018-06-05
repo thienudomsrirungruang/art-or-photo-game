@@ -20,6 +20,7 @@ public class UserDao {
     private static final String GET_TOTAL_PLAY_COUNT_BY_USER_SQL  = "select count(score) from score where user_id=?;";
     private static final String GET_TOTAL_PLAY_COUNT_BY_GAME_SQL  = "select count(score) from score where user_id=? and game_id=?;";
     private static final String GET_USER_HIGH_SCORE_BY_GAME_SQL = "select max(score) from score where user_id = ? and game_id = ?;";
+    private static final String GET_USER_RECENT_SCORES_SQL = "select (score) from score where user_id = ? and game_id = ? order by score_date desc, id desc limit ?";
     private static final String CHECK_USER_EXISTS_SQL = "select * from users where username=?;";
     private static final String CHECK_USERNAME_TAKEN_SQL = "select TOP 1 username FROM users WHERE username = ?;";
 
@@ -97,6 +98,20 @@ public class UserDao {
             return rs.get(0);
         }
         return Integer.MIN_VALUE;
+    }
+
+    public int[] getUserRecentScores(String username, int gameID, int numberScores){
+        List<Integer> rs = jdbcTemplate.query(GET_USER_RECENT_SCORES_SQL, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt(1);
+            }
+        }, getUserIdByUsername(username), gameID, numberScores);
+        int[] output = new int[rs.size()];
+        for (int i = 0; i < rs.size(); i++) {
+            output[i] = rs.get(i);
+        }
+        return output;
     }
 
     public int getUserIdByUsername(String username){
