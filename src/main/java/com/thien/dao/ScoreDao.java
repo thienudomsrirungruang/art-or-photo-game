@@ -9,20 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 @Transactional
 public class ScoreDao {
 
-    private static final String INSERT_SCORE_SQL = "insert into score (game_id, user_id, score) values (?, ?, ?)";
+    private static final String INSERT_SCORE_SQL = "insert into score (game_id, user_id, score, score_date) values (?, ?, ?, ?)";
     private static final String GET_GLOBAL_HIGH_SCORE_SQL = "select score from art_or_photo.score where game_id = ? order by score desc limit 1";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void insertScore(int gameID, int userID, int score){
-        jdbcTemplate.update(INSERT_SCORE_SQL, gameID, userID, score);
+    public void insertScore(int gameID, int userID, int score, Date date){
+        jdbcTemplate.update(INSERT_SCORE_SQL, gameID, userID, score, date);
     }
 
     public ScoreInfo getGlobalHighScore(int gameID){
