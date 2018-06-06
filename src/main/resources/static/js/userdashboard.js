@@ -78,9 +78,14 @@ function displayGameCounts(game){
                     url: '/user/' + username + '/recentscores/' + game.id,
                     contentType: 'application/json'
                 }).done(function(recentscores){
-                    console.log(recentscores);
+                    if(count > 1){
+                        display += '<div class="chart"><canvas class="chart" id="chart-' + game.id + '"></canvas></div>';
+                    }
                     display += '</div></div>';
                     $('#game-counts').html(display);
+                    if(count > 1){
+                        initChart('chart-' + game.id, recentscores);
+                    }
                 })
             })
         }else{
@@ -88,8 +93,47 @@ function displayGameCounts(game){
             $('#game-counts').html(display);
         }
     })
+}
 
-
+function initChart(divID, recentscores){
+    console.log(recentscores);
+    var labels = [];
+    for (var i = 0; i < recentscores.length; i++) {
+        labels.push('');
+    }
+    var ctx = $('#' + divID);
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Score",
+                data: recentscores,
+                // backgroundColor: [
+                // 'rgba(255, 99, 132, 0.2)',
+                // 'rgba(54, 162, 235, 0.2)',
+                // 'rgba(255, 206, 86, 0.2)',
+                // 'rgba(75, 192, 192, 0.2)',
+                // 'rgba(153, 102, 255, 0.2)',
+                // 'rgba(255, 159, 64, 0.2)'
+                // ],
+                // borderColor: [
+                //     'rgba(255,99,132,1)',
+                //     'rgba(54, 162, 235, 1)',
+                //     'rgba(255, 206, 86, 1)',
+                //     'rgba(75, 192, 192, 1)',
+                //     'rgba(153, 102, 255, 1)',
+                //     'rgba(255, 159, 64, 1)'
+                // ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+    });
 }
 
 //                <div class="col s12 m6">

@@ -21,6 +21,12 @@
     margin-bottom: 2vh;
 }
 
+
+.chart{
+    width: 100% !important;
+    height: 170px !important;
+}
+
 #title{
     font-size: 5vh;
     margin-bottom: 20px;
