@@ -5,9 +5,7 @@ import com.thien.service.PictureGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,18 +21,18 @@ public class GameController {
     @Autowired
     private PictureGetter pictureGetter;
 
-    @RequestMapping("")
+    @GetMapping("")
     public String getMainPage(){
         return "main";
     }
 
-    @RequestMapping("/random-picture")
+    @PostMapping("/random-picture")
     @ResponseBody
     public PictureInfo getRandomPicture(){
         return pictureGetter.getRandomPicture();
     }
 
-    @RequestMapping("/image/{imageName}")
+    @GetMapping("/image/{imageName}")
     @ResponseBody
     public byte[] getPictureAsBytes(@PathVariable("imageName") String imageName) throws IOException {
         String stringPath = imagePath + imageName + ".png";

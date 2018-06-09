@@ -13,14 +13,14 @@ public class DashboardController {
     @Autowired
     private UserInfoGetter uig;
 
-    @RequestMapping("/dashboard/{username}")
+    @GetMapping("/dashboard/{username}")
     public String getUserDashboard(){
         return "userdashboard";
     }
 
 
 
-    @RequestMapping("/dashboard/")
+    @GetMapping("/dashboard/")
     public String getDashboardRedirect(){
         return "dashboardredirect";
     }
@@ -60,7 +60,7 @@ public class DashboardController {
 
 
 
-    @RequestMapping(value = "/user/getusername", method = RequestMethod.POST)
+    @PostMapping(value = "/user/getusername")
     @ResponseBody
     public String currentUsername(Principal principal) {
         return principal.getName();

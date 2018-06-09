@@ -17,7 +17,7 @@ public class UserController {
 
 
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String getLoginScreen(){
         return "login";
     }

@@ -6,6 +6,7 @@ import com.thien.service.ScoreAdder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,7 +20,7 @@ public class ScoreController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping("/enter-score/{game_id}/{score}")
+    @PostMapping("/enter-score/{game_id}/{score}")
     @ResponseBody
     public void enterScore(@PathVariable("game_id") String gameID, @PathVariable("score") String score, Principal principal){
         try {
@@ -30,7 +31,7 @@ public class ScoreController {
         }
     }
 
-    @RequestMapping("/get-highscore/global/{game_id}")
+    @PostMapping("/get-highscore/global/{game_id}")
     @ResponseBody
     public ScoreInfo getGlobalHighScore(@PathVariable("game_id") String gameID){
         try{
