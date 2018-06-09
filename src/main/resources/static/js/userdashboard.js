@@ -84,7 +84,7 @@ function displayGameCounts(game){
                     display += '</div></div>';
                     $('#game-counts').html(display);
                     if(count > 1){
-                        initChart('chart-' + game.id, recentscores);
+                        initChart('chart-' + game.id, recentscores.reverse());
                     }
                 })
             })
