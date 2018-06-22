@@ -1,6 +1,7 @@
 package com.thien.controller;
 
 import com.thien.dao.UserDao;
+import com.thien.entity.HighScoreInfo;
 import com.thien.entity.ScoreInfo;
 import com.thien.service.ScoreAdder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ScoreController {
 
     @PostMapping("/get-highscore/global/{game_id}")
     @ResponseBody
-    public ScoreInfo getGlobalHighScore(@PathVariable("game_id") String gameID){
+    public HighScoreInfo getGlobalHighScore(@PathVariable("game_id") String gameID){
         try{
             return scoreAdder.getGlobalHighScore(Integer.parseInt(gameID));
         }catch(Exception e){

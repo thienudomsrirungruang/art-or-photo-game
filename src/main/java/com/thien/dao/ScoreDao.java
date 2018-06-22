@@ -36,10 +36,10 @@ public class ScoreDao {
         ScoreInfo si = new ScoreInfo();
         if(results.isEmpty()){
             si.setScore(0);
-            si.setHasScore(false);
+//            si.setHasScore(false);
         }else{
             si.setScore(results.get(0));
-            si.setHasScore(true);
+//            si.setHasScore(true);
         }
         return si;
     }
