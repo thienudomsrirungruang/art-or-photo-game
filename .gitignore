@@ -10,3 +10,7 @@
 *.ipr
 
 *.png
+.classpath
+.project
+.settings/
+bin/
