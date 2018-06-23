@@ -14,7 +14,7 @@ public class ScoreInfo {
     @Column(name="game_id")
     private int gameId;
     @Column(name="user_id")
-    private int userID;
+    private int userId;
     @Column(name="score")
     private int score;
     @Column(name="score_date")
@@ -36,12 +36,12 @@ public class ScoreInfo {
         this.gameId = gameId;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getScore() {

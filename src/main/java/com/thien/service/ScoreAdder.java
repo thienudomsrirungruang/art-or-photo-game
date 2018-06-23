@@ -20,7 +20,7 @@ public class ScoreAdder {
 //        sd.insertScore(gameID, userID, score, new Date());
         ScoreInfo input = new ScoreInfo();
         input.setGameId(gameID);
-        input.setUserID(userID);
+        input.setUserId(userID);
         input.setScore(score);
         input.setScoreDate(new Date());
         sr.save(input);
