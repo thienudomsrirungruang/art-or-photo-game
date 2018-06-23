@@ -1,11 +1,9 @@
 package com.thien.entity;
 
-import javax.persistence.Entity;
 
-@Entity
 public class HighScoreInfo {
     int score;
-    boolean has_score;
+    boolean hasScore;
 
     public int getScore() {
         return score;
@@ -15,11 +13,11 @@ public class HighScoreInfo {
         this.score = score;
     }
 
-    public boolean isHas_score() {
-        return has_score;
+    public boolean isHasScore() {
+        return hasScore;
     }
 
-    public void setHas_score(boolean has_score) {
-        this.has_score = has_score;
+    public void setHasScore(boolean hasScore) {
+        this.hasScore = hasScore;
     }
 }

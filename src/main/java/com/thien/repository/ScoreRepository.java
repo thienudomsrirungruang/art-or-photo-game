@@ -9,5 +9,5 @@ import java.util.List;
 @Transactional
 @Repository
 public interface ScoreRepository extends CrudRepository<ScoreInfo, Long> {
-    List<ScoreInfo> findByGame_IdOrderByScoreDesc(int game_id);
+    List<ScoreInfo> findByGameIdOrderByScoreDesc(int game_id);
 }

@@ -1,27 +1,24 @@
 package com.thien.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonView;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
+@Table(name="score")
 public class ScoreInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private int id;
     @Column(name="game_id")
-    private int game_id;
+    private int gameId;
     @Column(name="user_id")
-    private int user_id;
+    private int userID;
     @Column(name="score")
     private int score;
     @Column(name="score_date")
-    private Date score_date;
+    private Date scoreDate;
 
     public int getId() {
         return id;
@@ -31,20 +28,20 @@ public class ScoreInfo {
         this.id = id;
     }
 
-    public int getGame_id() {
-        return game_id;
+    public int getGameId() {
+        return gameId;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public int getScore() {
@@ -55,12 +52,12 @@ public class ScoreInfo {
         this.score = score;
     }
 
-    public Date getScore_date() {
-        return score_date;
+    public Date getScoreDate() {
+        return scoreDate;
     }
 
-    public void setScore_date(Date score_date) {
-        this.score_date = score_date;
+    public void setScoreDate(Date scoreDate) {
+        this.scoreDate = scoreDate;
     }
 
     @Override
