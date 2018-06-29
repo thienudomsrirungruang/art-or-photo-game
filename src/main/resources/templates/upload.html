@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/upload.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Upload an image</title>
+</head>
+<body>
+	<nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left">
+                <li class="active"><a href="/">Home</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right">
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+                    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                        <input display="hidden" type="submit" value="Sign Out"/>
+                    </form> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+	<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+	    <input type="radio" name="category" value="art"/>Art<br/>
+	    <input type="radio" name="category" value="photo"/>Photo<br/><br/>
+	    <input type="file" name="image"/><br/><br/>
+	    <input type="submit" value="Submit" id="btnSubmit"/>
+	</form>
+	<div id="result">
+	</div>
+</body>
+</html>
