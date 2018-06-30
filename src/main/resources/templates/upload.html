@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -27,8 +27,8 @@
         </div>
     </nav>
 	<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-	    <input type="radio" name="category" value="art"/>Art<br/>
-	    <input type="radio" name="category" value="photo"/>Photo<br/><br/>
+        <input type="radio" name="category" value="art" id="art-btn"/><label for="art-btn">Art</label><br/>
+        <input type="radio" name="category" value="photo" id="photo-btn"/><label for="photo-btn">Photo</label><br/><br/>
 	    <input type="file" name="image"/><br/><br/>
 	    <input type="submit" value="Submit" id="btnSubmit"/>
 	</form>
