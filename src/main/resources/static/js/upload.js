@@ -10,7 +10,6 @@ function init(){
 function ajaxSubmit(){
 	var form = $('#fileUploadForm')[0];
 	var data = new FormData(form);
-	$('#btnSubmit').prop('disabled', true);
 	$.ajax({
 		type: 'POST',
 		enctype: 'multipart/form-data',
