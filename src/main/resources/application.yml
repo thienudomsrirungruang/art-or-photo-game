@@ -9,6 +9,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         ddl-auto: update
         show_sql: true
+  http:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
 
 
 image:
