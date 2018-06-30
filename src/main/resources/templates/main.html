@@ -7,6 +7,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/upload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <meta charset="UTF-8"/>
     <title>Art or Photo</title>
@@ -61,7 +62,14 @@
 
         <div class="modal" id="upload">
             <div class="modal-content">
-                test
+                <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                    <input type="radio" name="category" value="art" id="art-btn"/><label for="art-btn">Art</label><br/>
+                    <input type="radio" name="category" value="photo" id="photo-btn"/><label for="photo-btn">Photo</label><br/><br/>
+                    <input type="file" name="image"/><br/><br/>
+                    <input type="submit" value="Submit" id="btnSubmit"/>
+                </form>
+                <div id="result">
+                </div>
             </div>
         </div>
     </center>
