@@ -6,6 +6,8 @@ var game = false;
 
 function init(){
 
+    $('#upload').modal();
+
     $('#art-btn').hide();
     $('#photo-btn').hide();
     $('#photo').html('')
