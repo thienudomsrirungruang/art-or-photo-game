@@ -22,5 +22,9 @@ function ajaxSubmit(){
 		$('#result').html('Success!')
 	}).error(function(){
 		$('#result').html('Error')
-	})
+	}).done(function(){
+	    setTimeout(function(){
+    	    $('#result').html('')
+    	}, 5000)
+    })
 }
