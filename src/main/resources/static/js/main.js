@@ -3,8 +3,11 @@ $(document).ready(init);
 let score = 0;
 var isPhoto = true;
 var game = false;
+var login = false;
 
 function init(){
+
+    checkLogin();
 
     $('#upload').modal();
 
@@ -19,6 +22,21 @@ function init(){
     $('#start-btn').click(startClick);
 
     updateHighScore();
+}
+
+function checkLogin(){
+    $.ajax({
+        method: 'POST',
+        url: '/login/checklogin'
+    }).done(function(isLogin){
+        login = isLogin;
+        if(login){
+                $('#login').hide();
+            }else{
+                $('#signout').hide();
+                $('#image-upload-btn').hide();
+            }
+    })
 }
 
 function showScore(){
