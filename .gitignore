@@ -9,7 +9,6 @@
 *.iml
 *.ipr
 
-*.png
 .classpath
 .project
 .settings/

@@ -20,12 +20,13 @@
             </ul>
             <ul id="nav-mobile" class="right">
                 <li><a href="/dashboard/">Dashboard</a></li>
-                <li>
+                <li id="signout">
                     <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
                     <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                         <input display="hidden" type="submit" value="Sign Out"/>
                     </form> 
                 </li>
+                <li id="login"><a href="/login/">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -57,7 +58,7 @@
             </div>
         </div>
 
-        <a class="waves-effect waves-light btn modal-trigger" href="#upload">Upload an image</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#upload" id="image-upload-btn">Upload an image</a>
 
 
         <div class="modal" id="upload">

@@ -3,8 +3,11 @@ $(document).ready(init);
 let score = 0;
 var isPhoto = true;
 var game = false;
+var login = false;
 
 function init(){
+
+    checkLogin();
 
     $('#upload').modal();
 
@@ -21,6 +24,21 @@ function init(){
     updateHighScore();
 }
 
+function checkLogin(){
+    $.ajax({
+        method: 'POST',
+        url: '/login/checklogin'
+    }).done(function(isLogin){
+        login = isLogin;
+        if(login){
+            $('#login').hide();
+        }else{
+            $('#signout').hide();
+            $('#image-upload-btn').hide();
+        }
+    })
+}
+
 function showScore(){
     $('#score').html('Score: ' + score);
 }
@@ -30,18 +48,29 @@ function newHighScore(){
 }
 
 function updateHighScore(){
-    $.ajax({
-        method: 'POST',
-        url: '/get-highscore/global/1'
-    })
-    .done(function(scoreInfo) {
-        if(scoreInfo.hasScore){
-            $('#highscore').show()
-            $('#highscore').html('High Score: ' + scoreInfo.score)
-        }else{
-            $('#highscore').hide()
+    if(login){
+        $.ajax({
+            method: 'POST',
+            url: '/get-highscore/global/1'
+        })
+        .done(function(scoreInfo) {
+            if(scoreInfo.hasScore){
+                $('#highscore').show()
+                $('#highscore').html('High Score: ' + scoreInfo.score)
+            }else{
+                $('#highscore').hide()
+            }
+        })
+    }
+    else{
+        if(Cookies.get('highscore') !== undefined){ 
+            $('#highscore').show(); 
+            $('#highscore').html('High Score: ' + Cookies.get('highscore'));    
+        }else{  
+            $('#highscore').hide(); 
         }
-    })
+    }
+    
     
 }
 
@@ -81,14 +110,23 @@ function startClick(){
         //     setTimeout(function(){
         //         $('body').removeClass('highscore')
         //     }, 5000)
-        let scoreUrl = '/enter-score/1/' + score;
-        $.ajax({
-            method: 'POST',
-            url: scoreUrl
-        }).done(function(){
+        if(login){
+            let scoreUrl = '/enter-score/1/' + score;
+            $.ajax({
+                method: 'POST',
+                url: scoreUrl
+            }).done(function(){
+                updateHighScore();
+            })
+        }
+        else{
+            if(Cookies.get('highscore') < score || Cookies.get('highscore') === undefined){ 
+                Cookies.set('highscore', score, { expires: 365, path: '' });
+            }else{  
+                Cookies.set('highscore', Cookies.get('highscore'), { expires: 365, path: '' });
+            }
             updateHighScore();
-        })
-        
+        }
         setTimeout(function(){
             $('#start-btn').show();
         }, 1000)

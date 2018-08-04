@@ -36,4 +36,10 @@ public class UserController {
             return "loginaccountcreatedredirect";
         }
     }
+
+    @PostMapping("/login/checklogin")
+    @ResponseBody
+    public boolean isLogin(Principal principal){
+        return principal != null;
+    }
 }
