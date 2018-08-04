@@ -60,6 +60,12 @@ function updateHighScore(){
             }else{
                 $('#highscore').hide()
             }
+            $.ajax({
+                method: 'POST',
+                url: '/get-highscore/global/1/weekly'
+            }).done(function(scoreInfo){
+                console.log(scoreInfo.score);
+            })
         })
     }
     else{

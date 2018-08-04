@@ -40,5 +40,4 @@ public class GameController {
         byte[] bytesRead = Files.readAllBytes(path);
         return bytesRead;
     }
-
 }

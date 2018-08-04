@@ -65,7 +65,7 @@ public class UserInfoGetter {
         }
     }
 
-    private int getIdByUsername(String username){
+    public int getIdByUsername(String username){
         List<UserInfo> results = ur.findByUsername(username);
         if(results.size() > 0){
             return results.get(0).getId();
