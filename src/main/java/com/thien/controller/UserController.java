@@ -15,6 +15,8 @@ public class UserController {
     @Autowired
     private UserAdder userAdder;
 
+    @Autowired
+    private UserInfoGetter uig;
 
 
     @GetMapping("/login")
@@ -41,5 +43,11 @@ public class UserController {
     @ResponseBody
     public boolean isLogin(Principal principal){
         return principal != null;
+    }
+
+    @PostMapping("/user/id/{id}")
+    @ResponseBody
+    public String getUsernameById(@PathVariable int id){
+        return uig.getUsernameById(id);
     }
 }

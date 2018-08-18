@@ -21,7 +21,7 @@ function init(){
     $('#photo-btn').click(photoClick);
     $('#start-btn').click(startClick);
 
-    updateHighScore();
+
 }
 
 function checkLogin(){
@@ -36,6 +36,7 @@ function checkLogin(){
             $('#signout').hide();
             $('#image-upload-btn').hide();
         }
+        updateHighScore();
     })
 }
 
@@ -64,7 +65,17 @@ function updateHighScore(){
                 method: 'POST',
                 url: '/get-highscore/global/1/weekly'
             }).done(function(scoreInfo){
-                console.log(scoreInfo.score);
+//                console.log(scoreInfo.score);
+                if(scoreInfo != ''){
+                    $.ajax({
+                        method: 'POST',
+                        url: '/user/id/' + scoreInfo.userId
+                    }).done(function(username){
+                        $('#weekly-display').html('Weekly high score: ' + scoreInfo.score + ' by ' +  username)
+                    })
+                }else{
+                    $('#weekly-display').html('No weekly high score yet')
+                }
             })
         })
     }

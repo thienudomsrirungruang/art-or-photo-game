@@ -73,4 +73,13 @@ public class UserInfoGetter {
             return 0;
         }
     }
+
+    public String getUsernameById(int id){
+        List<UserInfo> results = ur.findById(id);
+        if(results.size() > 0){
+            return results.get(0).getUsername();
+        }else{
+            return null;
+        }
+    }
 }
