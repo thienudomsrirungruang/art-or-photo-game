@@ -1,4 +1,4 @@
-package com.thien.service;
+package com.thien;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
