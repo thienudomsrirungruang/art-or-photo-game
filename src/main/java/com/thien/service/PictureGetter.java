@@ -19,7 +19,7 @@ public class PictureGetter {
     public PictureInfo getRandomPicture(){
 
         List<PictureInfo> result = (List<PictureInfo>) pr.findAll();
-        if( null != result || !result.isEmpty() ){
+        if( null != result && !result.isEmpty() ){
             return result.get(random.nextInt(result.size()));
         }
 
