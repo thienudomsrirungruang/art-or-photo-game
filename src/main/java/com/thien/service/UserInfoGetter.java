@@ -14,9 +14,6 @@ import java.util.List;
 public class UserInfoGetter {
 
     @Autowired
-    private UserDao ud;
-
-    @Autowired
     private UserRepository ur;
 
     @Autowired
