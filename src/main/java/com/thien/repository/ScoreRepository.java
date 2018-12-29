@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
-@Transactional
 @Repository
 public interface ScoreRepository extends CrudRepository<ScoreInfo, Long> {
     List<ScoreInfo> findByGameIdOrderByScoreDesc(int gameId);

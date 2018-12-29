@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -32,6 +33,7 @@ public class UserAdder {
         return ur.findByUsername(username).size() > 0;
     }
 
+    @Transactional
     public void enterUser(String username, String password){
         String encodedPassword = passwordEncoder.encode(password);
 //        ud.enterNewUser(username, encodedPassword);

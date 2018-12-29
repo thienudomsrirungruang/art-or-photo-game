@@ -16,6 +16,7 @@ public class ScoreAdder {
     private ScoreRepository sr;
 
 
+    @Transactional
     public void enterScore(int gameID, int userID, int score) {
 //        sd.insertScore(gameID, userID, score, new Date());
         ScoreInfo input = new ScoreInfo();

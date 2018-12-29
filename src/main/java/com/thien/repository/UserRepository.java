@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Repository
 public interface UserRepository extends CrudRepository<UserInfo, Long> {
     List<UserInfo> findByUsername(String username);
