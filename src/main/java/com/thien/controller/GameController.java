@@ -1,7 +1,7 @@
 package com.thien.controller;
 
 import com.thien.entity.PictureInfo;
-import com.thien.service.PictureGetter;
+import com.thien.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class GameController {
     private String imagePath;
 
     @Autowired
-    private PictureGetter pictureGetter;
+    private PictureService pictureService;
 
     @GetMapping("")
     public String getMainPage(){
@@ -29,7 +29,7 @@ public class GameController {
     @PostMapping("/random-picture")
     @ResponseBody
     public PictureInfo getRandomPicture(){
-        return pictureGetter.getRandomPicture();
+        return pictureService.getRandomPicture();
     }
 
     @GetMapping("/image/{imageName}")

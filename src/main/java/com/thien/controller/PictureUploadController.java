@@ -1,6 +1,6 @@
 package com.thien.controller;
 
-import com.thien.service.PictureAdder;
+import com.thien.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +22,7 @@ public class PictureUploadController {
     private String imagePath;
 
     @Autowired
-    private PictureAdder pa;
+    private PictureService ps;
 
     @PostMapping("/upload")
     @ResponseBody
@@ -40,7 +40,7 @@ public class PictureUploadController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        pa.uploadImage(image.getOriginalFilename(), category.equals("photo"));
+        ps.uploadImage(image.getOriginalFilename(), category.equals("photo"));
 
         return new ResponseEntity("Successfully uploaded - " +
                 image.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);

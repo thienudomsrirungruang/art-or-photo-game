@@ -6,11 +6,13 @@ import com.thien.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class ScoreAdder {
+public class ScoreService {
 
     @Autowired
     private ScoreRepository sr;
@@ -38,5 +40,12 @@ public class ScoreAdder {
             output.setScore(results.get(0).getScore());
         }
         return output;
+    }
+
+    public ScoreInfo getWeeklyTopScore(int gameId){
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        List<ScoreInfo> result =  sr.findWeeklyTopScoreFromDate(c.getTime(), gameId);
+        return result.size() == 0 ? null : result.get(0);
     }
 }

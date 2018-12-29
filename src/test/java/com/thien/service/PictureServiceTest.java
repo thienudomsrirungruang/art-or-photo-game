@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PictureGetterTest {
+public class PictureServiceTest {
 
     @Mock
     PictureRepository pr;
@@ -32,12 +32,19 @@ public class PictureGetterTest {
     PictureInfo pi;
 
     @InjectMocks
-    PictureGetter pictureGetter;
+    PictureService pictureService;
+
+    @Test
+    public void uploadImageTest(){
+        when(pr.save(Matchers.any(PictureInfo.class))).thenReturn(null);
+        pictureService.uploadImage("", true);
+        verify(pr, times(1)).save(any(PictureInfo.class));
+    }
 
     @Test
     public void getRandomPictureTest(){
         when(pr.findAll()).thenReturn(new ArrayList<PictureInfo>(Arrays.asList(pi)));
-        pictureGetter.getRandomPicture();
+        pictureService.getRandomPicture();
         verify(pr, times(1)).findAll();
         verify(random, times(1)).nextInt(any(Integer.class));
     }
@@ -45,7 +52,7 @@ public class PictureGetterTest {
     @Test
     public void emptyResultTest(){
         when(pr.findAll()).thenReturn(new ArrayList<PictureInfo>());
-        PictureInfo output = pictureGetter.getRandomPicture();
+        PictureInfo output = pictureService.getRandomPicture();
         assertNull(output);
         verify(pr, times(1)).findAll();
         verify(random, times(0)).nextInt();
@@ -54,10 +61,9 @@ public class PictureGetterTest {
     @Test
     public void nullResultTest(){
         when(pr.findAll()).thenReturn(null);
-        PictureInfo output = pictureGetter.getRandomPicture();
+        PictureInfo output = pictureService.getRandomPicture();
         assertNull(output);
         verify(pr, times(1)).findAll();
         verify(random, times(0)).nextInt();
     }
-
 }

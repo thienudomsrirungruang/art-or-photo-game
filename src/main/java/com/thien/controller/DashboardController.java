@@ -1,6 +1,6 @@
 package com.thien.controller;
 
-import com.thien.service.UserInfoGetter;
+import com.thien.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import java.security.Principal;
 public class DashboardController {
 
     @Autowired
-    private UserInfoGetter uig;
+    private UserService uig;
 
     @GetMapping("/dashboard/{username}")
     public String getUserDashboard(){
